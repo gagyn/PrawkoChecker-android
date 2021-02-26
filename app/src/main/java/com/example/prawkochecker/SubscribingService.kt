@@ -13,16 +13,16 @@ import java.net.URL
 class SubscribingService {
     private val resources = ResourceHelper()
 
-    suspend fun subscribe(view: View, name: String, surname: String, pkkNumber: String, email: String) {
+    suspend fun subscribe(view: View, pkkData: PkkData) {
         val clientId = FirebaseMessaging.getInstance().token.await()
 
         val urlBuilder = getDefaultUrlBuilder(view.context)
-        urlBuilder.append("?pkk=${pkkNumber}")
-        urlBuilder.append("&name=${name}")
-        urlBuilder.append("&surname=${surname}")
+        urlBuilder.append("?pkk=${pkkData.pkkNumber}")
+        urlBuilder.append("&name=${pkkData.name}")
+        urlBuilder.append("&surname=${pkkData.surname}")
         urlBuilder.append("&androidClientId=${clientId}")
-        if (!email.isNullOrBlank()) {
-            urlBuilder.append("&email=${email}")
+        if (!pkkData.email.isNullOrBlank()) {
+            urlBuilder.append("&email=${pkkData.email}")
         }
         val result = httpGet(urlBuilder.toString())
         val text = if (result) "Pomyślnie dodano numer PKK" else "Wystąpił problem lub dane są niepoprawne"

@@ -19,6 +19,7 @@ import java.net.URL
 
 class MainActivity : AppCompatActivity() {
     private val subscribingService = SubscribingService()
+    private val stateSavingService = StateSavingService(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,16 +31,23 @@ class MainActivity : AppCompatActivity() {
         val surname = findViewById<EditText>(R.id.editTextSurname).text.toString()
         val pkkNumber = findViewById<EditText>(R.id.editTextPkkNumber).text.toString()
         val email = findViewById<EditText>(R.id.editTextEmail).text.toString()
+        val pkkData = PkkData(name, surname, pkkNumber, email)
 
         hideKeyboard(view)
-        GlobalScope.launch(Dispatchers.Main) { subscribingService.subscribe(view, name, surname, pkkNumber, email) }
+        GlobalScope.launch(Dispatchers.Main) {
+            subscribingService.subscribe(view, pkkData)
+            stateSavingService.writePkkData(pkkData)
+        }
     }
 
     fun onButtonUnsubscribedClick(view: View) {
         val pkkNumber = findViewById<EditText>(R.id.editTextPkkNumber).text.toString()
 
         hideKeyboard(view)
-        GlobalScope.launch(Dispatchers.Main) { subscribingService.unsubscribe(view, pkkNumber) }
+        GlobalScope.launch(Dispatchers.Main) {
+            subscribingService.unsubscribe(view, pkkNumber)
+            stateSavingService.clearPkkData(pkkNumber)
+        }
     }
 
     private fun hideKeyboard(view: View) {
