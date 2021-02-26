@@ -17,14 +17,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:autofillHints="givenName" />
 
     <Button
         android:id="@+id/buttonUnsubscribe"
         android:layout_width="180dp"
         android:layout_height="48dp"
         android:layout_marginTop="14dp"
-        android:onClick="onButtonUnsubsribedClick"
+        android:onClick="onButtonUnsubscribedClick"
         android:text="Usuń numer PKK"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -51,7 +52,8 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextName" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextName"
+        android:autofillHints="familyName" />
 
     <EditText
         android:id="@+id/editTextPkkNumber"
@@ -73,10 +75,11 @@
         android:layout_marginBottom="16dp"
         android:ems="10"
         android:hint="Email (opcjonalnie)"
-        android:inputType="textPersonName"
+        android:inputType="textEmailAddress"
         app:layout_constraintBottom_toTopOf="@+id/buttonAddPkkData"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPkkNumber" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextPkkNumber"
+        android:autofillHints="email" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
