@@ -10,15 +10,15 @@
         android:id="@+id/editTextName"
         android:layout_width="240dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
+        android:layout_marginTop="16dp"
+        android:autofillHints="givenName"
         android:ems="10"
         android:hint="Imię"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:autofillHints="givenName" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewStatus" />
 
     <Button
         android:id="@+id/buttonUnsubscribe"
@@ -81,5 +81,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextPkkNumber"
         android:autofillHints="email" />
+
+    <TextView
+        android:id="@+id/textViewStatus"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
